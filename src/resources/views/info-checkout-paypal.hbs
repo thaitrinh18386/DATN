@@ -1,0 +1,19 @@
+<div class="info-checkout mt-4">
+  <h2 class="title-page">Thông tin giao hàng</h2>
+  <form id="createOrder" action="/cart/info-checkout-paypal" method="POST">
+    <div class="form-group">
+      <label class="label-title" for="name">Người nhận</label>
+      <input name="name" type="text" class="form-control" placeholder="Nguyễn Văn A">
+    </div>
+    <div class="form-group">
+      <label class="label-title" for="phone">Số điện thoại</label>
+      <input name="phone" type="text" class="form-control" placeholder="0123456789">
+    </div>
+    <div class="form-group">
+      <label class="label-title" for="address">Địa chỉ nhận hàng</label>
+      <input name="address" type="text" class="form-control" placeholder="Ghi rõ địa chỉ nhận hàng">
+    </div>
+    <input type="hidden" class="form-control" id="status" name="status">
+    <button class="compeleted-btn" type="submit">Xác nhận thanh toán</button>
+  </form>
+</div>

@@ -1,0 +1,64 @@
+<div class="profile mt-4">
+  {{!-- Lặp đơn hàng --}}
+  {{#if orders}}
+  <h1 class="page-title">Đơn hàng của tôi</h1>
+  {{#each orders}}
+  {{!-- Lặp vật phẩm trong đơn hàng --}}
+  <div class="order-title">Danh sách đơn hàng {{sum @index 1}}</div>
+  <div class="list-order">
+    {{#each this.items}}
+    <div class="product-order">
+      <img class="product-img" src="/imgs/{{this.item.images.[0]}}" alt="{{this.item.name}}">
+      <div class="product-detail">
+        <div class="product-title">{{this.item.name}}</div>
+        <div class="product-price">{{this.price}} VNĐ</div>
+        <div class="product-qty">Số lượng sản phẩm: {{this.qty}}</div>
+      </div>
+    </div>
+    <div class="dropdown-divider"></div>
+    {{/each}}
+    <div class="product-bot">
+      <div class="product-info">
+        <div class="product-info__name">Người nhận: {{this.name}}</div>
+        <div class="product-info__address">Địa chỉ giao hàng: {{this.address}}</div>
+        <div class="product-info__date">Thời gian đặt hàng: {{formatDate this.createdAt}}</div>
+      </div>
+      <div class="product-confirm">
+        <div class="product-confirm__status">Tình trạng đơn hàng: <span>{{this.status}}</span></div>
+        {{#if (loading this.status)}}
+        <form class="check" action="/profile/{{this._id}}" method="POST">
+          <div class="form-group">
+            <input type="hidden" class="form-control" id="status" name="status" value="Đã Giao Hàng">
+          </div>
+          <button type="submit" data-id="{{this._id}}" data-toggle="modal"
+            data-target="#deleteItem">Đã nhận hàng thành công.</button>
+        </form>
+        {{/if}}
+        {{#if (done this.status)}}
+        <h5 class="order-done">Giao hàng thành công: {{formatDate this.updatedAt}}</h5>
+        {{/if}}
+        <div class="product-confirm__price">Giá trị đơn hàng: {{this.cart.formattedPrice}} VNĐ</div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+  {{else}}
+  <div class="profile-emty">
+    <h3 class="noti">Danh sách đơn hàng trống!</h3>
+  </div>
+  {{/if}}
+</div>
+
+<script>
+
+  var doneCheck = document.getElementsByClassName("check")
+
+  for (var i = 0; i < doneCheck.length; i++) {
+    doneCheck[i].addEventListener("submit", function (event) {
+      let confirm = window.confirm("Bạn chắc chắn đã nhận hàng thành công?")
+      if (!confirm) {
+        event.preventDefault()
+      }
+    })
+  }
+</script>

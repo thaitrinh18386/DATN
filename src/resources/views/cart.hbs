@@ -1,0 +1,37 @@
+<div class="cart mt-4">
+  {{#if products}}
+  <h1 class="title-page">Giỏ hàng của bạn</h1>
+  <h4 class="title-desc">Có {{totalQty}} sản phẩm trong giỏ hàng</h4>
+  {{#each products}}
+  <div class="product-cart">
+    <img class="product-img" src="/imgs/{{this.item.images.[0]}}" alt="{{this.item.name}}">
+    <div class="product-detail">
+      <div class="product-title">{{this.item.desc}}</div>
+      <div class="product-price">{{this.price}} VNĐ</div>
+      <div class="product-qty">
+        <a href="/cart/reduce/{{this.item._id}}"><i class="fas fa-minus"></i></a>
+        <div class="product-count">{{this.qty}}</div>
+        <a href="/cart/add/{{this.item._id}}"><i class="fas fa-plus"></i></a>
+      </div>
+    </div>
+    <div class="product-remove">
+      <a href="/cart/remove/{{this.item._id}}" class="product-delete"><i class="fas fa-times"></i></a>
+      <div class="product-total-price">{{this.price}} VNĐ</div>
+    </div>
+  </div>
+  {{/each}}
+  <div class="checkout">
+    <div class="total-price">
+      Tổng thanh toán <span>{{formattedPrice}} VNĐ</span>
+    </div>
+    <a href="/cart/qrcode" class="btn btn-checkout">Thanh toán QRCode</a>
+    <a href="/cart/info-checkout" class="btn btn-checkout">Thanh toán COD</a>
+    <a href="/cart/info-checkout-paypal" class="btn btn-paypal">Thanh toán PayPal</a>
+  </div>
+  {{else}}
+  <div class="noti">
+    <h2 class="title">Không có sản phẩm nào trong giỏ hàng!</h2>
+    <a href="/" class="btn btn-back">QUAY TRỞ LẠI CỬA HÀNG</a>
+  </div>
+  {{/if}}
+</div>

@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="/">
+    <img class="logo-brand" src="/imgs/logo.png" alt="logo">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/admin">Trang chủ <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Danh mục quản lý
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/admin/list-user">Quản lý tài khoản</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/admin/list-product">Quản lý sản phẩm</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/admin/list-order">Quản lý đơn hàng</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/admin/revenue-statistics">Thống kê doanh thu</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        {{#if signin}}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Admin
+          <i class="fas fa-user"></i>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/profile">Thông tin tài khoản</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/signout">Đăng xuất</a>
+        </div>
+      </li>
+      {{else}}
+      <a class="nav-link" href="/signin">Đăng nhập/Đăng ký</a>
+      {{/if}}
+      </li>
+      {{!-- <li class="nav-item">
+        <a class="nav-link" href="/cart">
+          Giỏ hàng
+          <i class="fas fa-shopping-cart"></i>
+          <span class="badge">{{session.cart.totalQty}}</span>
+        </a>
+      </li> --}}
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control form-search mr-sm-2" type="search" placeholder="Tìm mô hình" aria-label="Tìm kiếm"
+        name="q">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+    </form>
+  </div>
+</nav>

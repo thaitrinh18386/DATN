@@ -1,0 +1,79 @@
+.all-cars,
+.all-motos {
+  display: flex;
+  margin-top: 20px;
+
+  .home-filter__label {
+    font-size: 20px;
+    line-height: 38px;
+    font-weight: 600;
+    margin-right: 10px;
+    color: $red-fa6e4f;
+  }
+
+  .filter-el {
+
+    .filter-new,
+    .filter-old,
+    .filter-low__price,
+    .filter-hight__price {
+      line-height: 26px;
+      height: 38px;
+      background-color: $gray-eaebed;
+      color: $text-color;
+      margin-left: 16px;
+
+      &:hover {
+        background-color: $gray-color;
+      }
+    }
+  }
+}
+
+.price-filter {
+  margin-top: 16px;
+
+  .price-filter__label {
+    font-size: 20px;
+    line-height: 38px;
+    font-weight: 600;
+    margin-right: 10px;
+    color: $red-fa6e4f;
+  }
+
+  .price-filter__btn {
+    border: none;
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    background-color: $gray-eaebed;
+
+    &:hover {
+      background-color: $gray-color;
+    }
+  }
+}
+
+.color-filter {
+  .filter-color {
+    font-size: 20px;
+    line-height: 38px;
+    font-weight: 600;
+    margin-right: 10px;
+    color: $red-fa6e4f;
+  }
+
+  .filter-hight__price {
+    line-height: 26px;
+    height: 38px;
+    background-color: $gray-eaebed;
+    color: $text-color;
+    margin-left: 16px;
+
+    &:hover {
+      background-color: $gray-color;
+    }
+  }
+}

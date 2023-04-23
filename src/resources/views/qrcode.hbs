@@ -1,0 +1,17 @@
+<form class="check" action="/qrcode" method="POST">
+  <div class="form-group">
+    <input type="hidden" class="form-control">
+  </div>
+  <button type="submit" data-toggle="modal" data-target="#deleteItem">Đã thanh toán thành công?</button>
+</form>
+<script>
+  var doneCheck = document.getElementsByClassName("check")
+  for (var i = 0; i < doneCheck.length; i++) {
+    doneCheck[i].addEventListener("submit", function (event) {
+      let confirm = window.confirm("Bạn chắc chắn đã thanh toán thành công?")
+      if (!confirm) {
+        event.preventDefault()
+      }
+    })
+  }
+</script>

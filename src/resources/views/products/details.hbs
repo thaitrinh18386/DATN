@@ -1,0 +1,222 @@
+<div class="mt-4">
+  <div class="row products-details">
+    <div class="col-lg-5">
+      <div id="custSlide" class="carousel slide" data-ride="carousel" align="center">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/imgs/{{detail.images.[0]}}" alt="{{detail.name}}">
+          </div>
+
+          <div class="carousel-item">
+            <img src="/imgs/{{detail.images.[1]}}" alt="{{detail.name}}">
+          </div>
+
+          <div class="carousel-item">
+            <img src="/imgs/{{detail.images.[2]}}" alt="{{detail.name}}">
+          </div>
+
+          <div class="carousel-item">
+            <img src="/imgs/{{detail.images.[3]}}" alt="{{detail.name}}">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#custSlide" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#custSlide" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+
+        <!-- Thumbnails -->
+        <ol class="carousel-indicators list-inline">
+          <li class="list-inline-item active">
+            <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custSlide">
+              <img src="/imgs/{{detail.images.[0]}}" class="img-fluid">
+            </a>
+          </li>
+
+          <li class="list-inline-item">
+            <a id="carousel-selector-1" data-slide-to="1" data-target="#custSlide">
+              <img src="/imgs/{{detail.images.[1]}}" class="img-fluid">
+            </a>
+          </li>
+
+          <li class="list-inline-item">
+            <a id="carousel-selector-2" data-slide-to="2" data-target="#custSlide">
+              <img src="/imgs/{{detail.images.[2]}}" class="img-fluid">
+            </a>
+          </li>
+
+          <li class="list-inline-item">
+            <a id="carousel-selector-2" data-slide-to="3" data-target="#custSlide">
+              <img src="/imgs/{{detail.images.[3]}}" class="img-fluid">
+            </a>
+          </li>
+        </ol>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <h2 class="product-name">{{detail.name}}</h2>
+      <p class="product-desc">{{detail.desc}}</p>
+      <p class="product-price">Giá:
+        <span class="product-retail-price" data-value="{{detail.price}}"></span>
+        {{#if detail.expensive}}
+        <span class="product-expensive-price" data-value="{{detail.expensive}}"></span>
+        <span class="product-discount">-{{detail.discount}}%</span>
+        {{/if}}
+      </p>
+      <ul>
+        <li>Kích thước: {{detail.details.size}}</li>
+        <li>Khối lượng: {{detail.details.weight}}</li>
+        <li>Tỉ lệ: {{detail.details.ratio}}</li>
+        <li>Chất liệu: {{detail.details.material}}</li>
+        <li>Chức năng: {{detail.details.function}}</li>
+      </ul>
+      {{!-- <button class="buy-btn">Mua ngay</button> --}}
+      <a href="/cart/add-cart/{{detail._id}}" class="btn btn-success btn-add" role="button">Thêm vào giỏ hàng</a>
+    </div>
+    <div class="col-lg-3">
+      <h2 class="title-services">ĐỌC KỸ LƯU Ý VÀ LỊCH PHÁT HÀNH</h2>
+      <div class="box-services">
+        <div class="box-el">
+          <i class="box-icon fas fa-dollar-sign"></i>
+          <div class="box-right">
+            <h3>Giao hàng miễn phí</h3>
+            <p>với đơn hàng từ 1.000.000đ trở lên</p>
+          </div>
+        </div>
+        <div class="box-el">
+          <i class="box-icon fas fa-shipping-fast"></i>
+          <div class="box-right">
+            <h3>Giao hàng trên toàn quốc</h3>
+            <p>63 tỉnh thành</p>
+          </div>
+        </div>
+        <div class="box-el">
+          <i class="box-icon fas fa-hand-holding-usd"></i>
+          <div class="box-right">
+            <h3>Hoàn lại tiền 100%</h3>
+            <p>Cho tất cả sản phẩm bị gặp lỗi</p>
+          </div>
+        </div>
+        <div class="box-el">
+          <i class="box-icon fas fa-phone-volume"></i>
+          <div class="box-right">
+            <h3>Hotline hỗ trợ</h3>
+            <p>0976.064.640</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h1 class="title-child">Đánh giá về sản phẩm</h1>
+  <div class="comment">
+    <div class="show-comment">
+      {{#if (admin username "admin")}}
+      {{#each detail.comments}}
+      <div class="title-comment">
+        {{this.author}} - {{formatDate this.createdAt}}
+        <a class="btn-delete" href="" data-id="{{this._id}}" data-toggle="modal" data-target="#deleteItem">
+          <i class="fas fa-times"></i>
+        </a>
+      </div>
+      <div class="comment-client">
+        {{this.comment}}
+      </div>
+      {{/each}}
+      {{else}}
+      {{#each detail.comments}}
+      <div class="title-comment">
+        {{this.author}} - {{formatDate this.createdAt}}
+      </div>
+      <div class="comment-client">
+        {{this.comment}}
+      </div>
+      {{/each}}
+      {{/if}}
+    </div>
+    <form class="form-comment" action="/products/{{detail.name}}/comments" method="POST">
+      <h2>Viết đánh giá sản phẩm</h2>
+      {{#if user}}
+      <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"></textarea>
+      <button type="submit" class="btn btn-primary">Gửi</button>
+      {{else}}
+      <textarea class="form-control" name="comment" id="exampleFormControlTextarea1" rows="3"
+        placeholder="Bạn cần phải đăng nhập để đánh giá sản phẩm"></textarea>
+      {{/if}}
+    </form>
+  </div>
+  <div class="commit-box">
+    <h1 class="tilte-commit">Cam kết bán hàng tại Shop Mô Hình TT</h1>
+    <h2 class="title-child">Chất lượng sản phẩm</h2>
+    <ul>
+      <li>Cam kết hàng đẹp như hình</li>
+      <li>Mô hình được làm cực kỳ chi tiết, sắc nét, màu sơn đẹp</li>
+      <li>Shop Mô Hình TT cam kết tất cả các sản phẩm cung cấp cho Quý khách hàng đều mới 100%, có nhãn hiệu và xuất xứ
+        rõ ràng.</li>
+      <li>Thông tin mô tả sản phẩm trên website là hoàn toàn xác thực, đảm bảo các yếu tố về kích thước, hình dáng và
+        màu sắc và chất lượng.</li>
+    </ul>
+    <h2 class="title-child">Giá cả sản phẩm</h2>
+    <ul>
+      <li>Giảm giá cho khách hàng mua số lượng lớn, mua chung theo nhóm, mua buôn.</li>
+      <li>Chúng tôi tin rằng giá cả do Shop Mô Hình TT cung cấp là giá cả cạnh tranh nhất.</li>
+      <li>Giảm giá cho khách hàng vào các dịp đặc biệt trong năm: Quốc tế Thiếu nhi 01/06, Tết Trung Thu, Lễ Noel…và còn
+        nhiều dịp đặc biệt khác.</li>
+    </ul>
+    <h2 class="title-child">Thông tin liên hệ</h2>
+    <p>Shop Mô Hình TT</p>
+    <p>Địa chỉ: Đức Thắng, Bắc Từ Liêm, Hà Nội</p>
+    <p>Hotline: 0976.064.640</p>
+    <p>Email: thaitrinhvan18386@gmail.com</p>
+  </div>
+  <div id="deleteItem" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Xóa nhận xét</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn có đồng ý xóa nhận xét này không?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-danger-delete">Xóa</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form name="form-Delete" method="POST"></form>
+</div>
+
+<script>
+  //Chuyển đổi thành đơn vị tiền tệ VN
+  const elements = document.querySelectorAll('span[data-value]');
+  const formatter = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND'
+  });
+
+  elements.forEach(element => {
+    const value = element.getAttribute('data-value');
+    element.textContent = formatter.format(value);
+  });
+
+  addEventListener('DOMContentLoaded', function () {
+    var btnDelete = document.querySelector('.btn-danger-delete');
+    var formSubmit = document.forms['form-Delete'];
+    var id;
+    $('#deleteItem').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      id = button.data('id');
+      console.log(id)
+    })
+    btnDelete.onclick = function () {
+      formSubmit.action = '/products/comments/' + id + '?_method=DELETE';
+      formSubmit.submit();
+    }
+  })
+</script>

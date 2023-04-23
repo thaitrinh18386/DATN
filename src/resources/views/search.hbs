@@ -1,0 +1,71 @@
+<div id="paradigm" class="mt-4">
+  <h1 class="page-title">Kết quả tìm kiếm</h1>
+  <div class="home-filter all-cars">
+    <span class="home-filter__label">Sắp xếp theo</span>
+    <div class="filter-el">
+      <a href="/search?sort=-createdAt" class="btn filter-new">Mới nhất</a>
+      <a href="/search?sort=createdAt" class="btn filter-old">Cũ nhất</a>
+      <a href="/search?sort=price" class="btn filter-low__price">Giá thấp</a>
+      <a href="/search?sort=-price" class="btn filter-hight__price">Giá cao</a>
+    </div>
+
+  </div>
+  <div class="price-filter">
+    <span class="price-filter__label">Tìm theo khoảng giá</span>
+    <input type="text" class="price-filter__input price-filter__input--min" placeholder="Giá tối thiểu">
+    <span class="price-filter__separator">-</span>
+    <input type="text" class="price-filter__input price-filter__input--max" placeholder="Giá tối đa">
+    <button class="price-filter__btn">Lọc</button>
+  </div>
+  <div class="main-content">
+    {{#each products}}
+    <div class="product mt-4">
+      <a href="products/{{this.name}}">
+        <img src="/imgs/{{this.images.[0]}}" alt="{{this.name}}" class="product-img">
+      </a>
+      <div class="product-body">
+        <a href="products/{{this.name}}">
+          <div class="product-title">{{this.name}}</div>
+        </a>
+        <div class="product-desc">{{this.desc}}</div>
+        <span class="product-price" data-value="{{this.price}}"></span>
+        <a href="/cart/add-cart/{{this._id}}" class="btn btn-success" role="button">Thêm vào giỏ hàng</a>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>
+
+<script>
+  //Chuyển đổi thành đơn vị tiền tệ VN
+  const elements = document.querySelectorAll('span[data-value]');
+  const formatter = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND'
+  });
+
+  elements.forEach(element => {
+    const value = element.getAttribute('data-value');
+    element.textContent = formatter.format(value);
+  });
+
+  //Lọc theo khoảng giá
+  var products = document.querySelectorAll('.product');
+  var minInput = document.querySelector('.price-filter__input--min');
+  var maxInput = document.querySelector('.price-filter__input--max');
+  var filterBtn = document.querySelector('.price-filter__btn');
+
+  filterBtn.addEventListener('click', function () {
+    var minValue = minInput.value;
+    var maxValue = maxInput.value;
+
+    for (var i = 0; i < products.length; i++) {
+      var productPrice = Number(products[i].querySelector('.product-price').dataset.value);
+      if (productPrice >= minValue && productPrice <= maxValue) {
+        products[i].style.display = 'block';
+      } else {
+        products[i].style.display = 'none';
+      }
+    }
+  });
+</script>

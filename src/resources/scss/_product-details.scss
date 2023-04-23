@@ -1,0 +1,205 @@
+.products-details {
+  min-height: 600px;
+  #custSlide {
+    .carousel-item {
+      width: inherit;
+      height: inherit;
+    }
+
+    .carousel-control-next {
+      right: 20px;
+    }
+
+    .carousel-control-prev {
+      left: 20px;
+    }
+
+    .carousel-inner img {
+      width: 100%;
+      height: 450px;
+    }
+
+    .carousel-indicators {
+      position: static;
+      margin-top: 20px;
+      margin-left: 0;
+      margin-right: 0;
+      justify-content: space-between;
+
+      li {
+        width: 100px;
+        margin-right: 0;
+        margin-left: 0;
+
+        img {
+          display: block;
+          opacity: 0.5;
+        }
+      }
+    }
+
+    .carousel-indicators li.active img {
+      opacity: 1;
+    }
+
+    .carousel-indicators li:hover img {
+      opacity: 0.75;
+    }
+  }
+
+  .abc {
+    min-height: 1000px;
+  }
+
+  .product-name {
+    font-size: 40px;
+    font-weight: 600;
+  }
+  .product-desc {
+    margin-top: 8px;
+    font-size: 20px;
+    text-align: justify;
+  }
+  .product-price {
+    font-size: 20px;
+    margin-top: 20px;
+    .product-retail-price {
+      color: $red-color;
+      font-weight: 700;
+      font-size: 25px;
+    }
+    .product-expensive-price {
+      font-size: 18px;
+      color: $gray-a7aeb4;
+      text-decoration-line: line-through;
+    }
+    .product-discount {
+      color: $red-color;
+      font-size: 18px;
+    }
+  }
+  ul {
+    list-style-type: disc;
+    margin-top: 12px;
+    font-size: 20px;
+    text-align: justify;
+    margin-left: 20px;
+    li {
+      margin-top: 10px;
+    }
+  }
+  .buy-btn {
+    width: 200px;
+    height: 50px;
+    margin-top: 50px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: $white-color;
+    background-color: $red-fa6e4f;
+    &:hover {
+      background-color: $red-c8583f;
+      color: $white-color;
+    }
+  }
+  .title-services {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .box-services {
+    display: flex;
+    flex-direction: column;
+    .box-el {
+      display: flex;
+      margin-top: 8px;
+      .box-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .box-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h3 {
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
+.commit-box {
+  margin-top: 20px;
+  .tilte-commit {
+    font-size: 30px;
+    color: $red-fa6e4f;
+    font-weight: 700;
+    margin-top: 36px;
+  }
+  .title-child {
+    font-size: 25px;
+    color: $red-fa6e4f;
+    font-weight: 600;
+    margin-top: 12px;
+  }
+  ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    li {
+      font-size: 20px;
+      margin-top: 8px;
+    }
+  }
+  p {
+    font-size: 20px;
+    margin-top: 8px;
+  }
+}
+
+.title-child {
+  font-size: 25px;
+  color: $red-fa6e4f;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.comment {
+  display: flex;
+  .show-comment {
+    width: 50%;
+
+    .title-comment {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      margin-top: 16px;
+      
+      .btn-delete {
+        float: right;
+        margin-right: 115px;
+        color: $text-color;
+      }
+    }
+    
+    .comment-client {
+      width: 80%;
+      padding-bottom: 8px;
+      border-bottom: 1px solid $gray-color;
+
+    }
+  }
+  .form-comment {
+    width: 50%;
+    h2 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    .form-control {
+      margin-bottom: 12px;
+    }
+  }
+}

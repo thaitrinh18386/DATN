@@ -1,0 +1,25 @@
+<div class="row sign-in">
+  <div class="col-md-4 col-md-offset-4">
+    <h1 class="title-page">Đăng nhập</h1>
+    <form action="/signin" method="POST">
+      <div class="form-group">
+        <label for="username" class="label-title">Tên đăng nhập</label>
+        <input type="text" id="username" name="username" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="password" class="label-title">Mật khẩu</label>
+        <input type="password" id="password" name="password" class="form-control">
+        {{#if hasErrors}}
+        <div class="mt-4 alert alert-danger">
+          {{#each messages}}
+          <p>{{this}}</p>
+          {{/each}}
+        </div>
+        {{/if}}
+      </div>
+      <input type="hidden" name="_csrf" value="{{csrfToken}}">
+      <button type="submit" class="btn btn-primary">Đăng nhập</button>
+    </form>
+    <h3>Bạn chưa có tài khoản? <a href="/signup">Đăng ký ngay</a></h3>
+  </div>
+</div>

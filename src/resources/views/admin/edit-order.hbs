@@ -1,0 +1,70 @@
+<div class="mt-4 edit-product">
+  <h2 class="page-title">Chi tiết đơn hàng</h2>
+  <a class="btn-nav" href="/admin/list-order" role="button">Danh sách đơn hàng</a>
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tên sản phẩm</th>
+        <th scope="col">Số lượng</th>
+        <th scope="col">Đơn giá</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each orders}}
+      {{#each this.items}}
+      <tr>
+        <th scope="row">{{sum @index 1}}</th>
+        <td>{{this.item.name}}</td>
+        <td>{{this.qty}}</td>
+        <td>{{this.price}} VNĐ</td>
+      </tr>
+      {{/each}}
+      {{/each}}
+    </tbody>
+  </table>
+  <form method="POST" action="/admin/list-order/{{orders._id}}?_method=PUT">
+    <div class="form-group">
+      <h4>Trạng thái đơn hàng hiện tại: {{orders.status}}</h4>
+      Chỉnh sửa trạng thái:
+      <select name="status" id="status" class="status">
+        {{#if (done orders.status)}}
+        <option value="Đã Giao Hàng">
+          Đã Giao Hàng
+        </option>
+        <option value="Đang Giao Hàng">
+          Đang Giao Hàng
+        </option>
+        <option value="Đang Xử Lý">
+          Đang Xử Lý
+        </option>
+        {{/if}}
+
+        {{#if (processing orders.status)}}
+        <option value="Đang Xử Lý">
+          Đang Xử Lý
+        </option>
+        <option value="Đang Giao Hàng">
+          Đang Giao Hàng
+        </option>
+        <option value="Đã Giao Hàng">
+          Đã Giao Hàng
+        </option>
+        {{/if}}
+        
+        {{#if (loading orders.status)}}
+        <option value="Đang Giao Hàng">
+          Đang Giao Hàng
+        </option>
+        <option value="Đang Xử Lý">
+          Đang Xử Lý
+        </option>
+        <option value="Đã Giao Hàng">
+          Đã Giao Hàng
+        </option>
+        {{/if}}
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Lưu lại</button>
+  </form>
+</div>

@@ -1,0 +1,107 @@
+<div class="home-filter all-cars">
+  <span class="home-filter__label">Sắp xếp theo</span>
+  <div class="filter-el">
+    <a href="/products/cars?&sort=-createdAt" class="btn filter-new">Mới nhất</a>
+    <a href="/products/cars?&sort=createdAt" class="btn filter-old">Cũ nhất</a>
+    <a href="/products/cars?&sort=price" class="btn filter-low__price">Giá thấp</a>
+    <a href="/products/cars?&sort=-price" class="btn filter-hight__price">Giá cao</a>
+    <a href="/products/cars?&sort=-discount" class="btn filter-hight__price">Giảm giá</a>
+    <a href="/products/cars?&sort=-discount" class="btn filter-hight__price">Giảm giá</a>
+  </div>
+
+</div>
+<div class="price-filter">
+  <span class="price-filter__label">Tìm theo khoảng giá</span>
+  <input type="text" class="price-filter__input price-filter__input--min" placeholder="Giá tối thiểu">
+  <span class="price-filter__separator">-</span>
+  <input type="text" class="price-filter__input price-filter__input--max" placeholder="Giá tối đa">
+  <button class="price-filter__btn">Lọc</button>
+</div>
+
+<div class="color-filter">
+  <span class="filter-color">Lọc theo màu</span>
+  <a href="/products/cars?&sort=color&filter=black" class="btn filter-hight__price">Đen</a>
+  <a href="/products/cars?&sort=color=-color" class="btn filter-hight__price">Trắng</a>
+</div>
+
+<div class="main-content">
+  {{#each cars}}
+  <div class="product mt-4">
+    <a href="/products/{{this.name}}">
+      <img src="/imgs/{{this.images.[0]}}" alt="{{this.name}}" class="product-img">
+    </a>
+    <div class="product-body">
+      <a href="/products/{{this.name}}">
+        <div class="product-title">{{this.name}}</div>
+      </a>
+      <div class="product-desc">{{this.desc}}</div>
+      <div class="product-price">
+        <span class="product-retail-price" data-value="{{this.price}}">{{this.price}}</span>
+        {{#if this.expensive}}
+        <span class="product-expensive-price" data-value="{{this.expensive}}">{{this.expensive}}đ</span>
+        <div class="product-discount">-{{this.discount}}%</div>
+        <img class="img-sale" src="https://theme.hstatic.net/1000328919/1001004299/14/sale.png?v=4" alt="sale">
+        {{/if}}
+      </div>
+      <a href="/cart/add-cart/{{this._id}}" class="btn btn-success" role="button">Thêm vào giỏ hàng</a>
+    </div>
+  </div>
+  {{/each}}
+</div>
+<ul class="pagination">
+
+</ul>
+
+<script>
+  //Pagination
+  var ulElement = document.querySelector('.pagination');
+  var html = '';
+  for (var i = 1; i <= {{ totalPage }}; i++) {
+    ulElement.innerHTML +=
+      `<li class="page-item">
+        <a class="page-link" href="?page=${i}">${i}</a>
+      </li>`;
+  }
+
+  var aElements = document.querySelectorAll('.page-link');
+  for (var i = 0; i < aElements.length; i++) {
+    aElements[i].addEventListener('click', function () {
+      for (var j = 0; j < aElements.length; j++) {
+        aElements[j].classList.remove('active');
+      }
+      this.classList.add('active');
+    });
+  }
+
+  //Chuyển đổi đơn vị tiền tệ
+  var productPrices = document.querySelectorAll('.product-retail-price');
+  for (var i = 0; i < productPrices.length; i++) {
+    let price = Number(productPrices[i].dataset.value);
+    let formattedPrice = price.toLocaleString("vi-VN", {
+      style: "currency",
+      currency: "VND"
+    });
+    productPrices[i].innerText = formattedPrice;
+  }
+
+  //Lọc theo khoảng giá
+  var products = document.querySelectorAll('.product');
+  var minInput = document.querySelector('.price-filter__input--min');
+  var maxInput = document.querySelector('.price-filter__input--max');
+  var filterBtn = document.querySelector('.price-filter__btn');
+
+  filterBtn.addEventListener('click', function () {
+    var minValue = minInput.value;
+    var maxValue = maxInput.value;
+
+    for (var i = 0; i < products.length; i++) {
+      var productPrice = Number(products[i].querySelector('.product-retail-price').dataset.value);
+      if (productPrice >= minValue && productPrice <= maxValue) {
+        products[i].style.display = 'block';
+      } else {
+        products[i].style.display = 'none';
+      }
+    }
+  });
+
+</script>

@@ -1,0 +1,191 @@
+<div id="slide" class="carousel slide" data-ride="carousel">
+  <ul class="carousel-indicators">
+    <li data-target="#slide" data-slide-to="0" class="active"></li>
+    <li data-target="#slide" data-slide-to="1"></li>
+    <li data-target="#slide" data-slide-to="2"></li>
+  </ul>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="/imgs/slide-1.png" alt="Mô hình ô tô">
+      <div class="carousel-caption">
+        <h3 class="slide-title">Shop Mô hình TT</h3>
+        <p class="desc-title">Đam mê không chỉ ở trên màn ảnh!</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/imgs/slide-2.png" alt="Mô hình goku">
+      <div class="carousel-caption">
+        <h3 class="slide-title">Shop Mô hình TT</h3>
+        <p class="desc-title">Đam mê không chỉ ở trên màn ảnh!</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="/imgs/slide-3.png" alt="Mô hình mô tô">
+      <div class="carousel-caption">
+        <h3 class="slide-title">Shop Mô hình TT</h3>
+        <p class="desc-title">Đam mê không chỉ ở trên màn ảnh!</p>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#slide" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#slide" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+
+<div id="paradigm" class="mt-4">
+  <div class="box-head">
+    <div class="line"></div>
+    <h1 class="page-title">MÔ HÌNH Ô TÔ</h1>
+    <div class="line"></div>
+  </div>
+  <div class="main-content">
+    {{#each cars}}
+    <div class="product mt-4">
+      <a href="products/{{this.name}}">
+        <img src="/imgs/{{this.images.[0]}}" alt="{{this.name}}" class="product-img">
+      </a>
+      <div class="product-body">
+        <a href="products/{{this.name}}">
+          <div class="product-title">{{this.name}}</div>
+        </a>
+        <div class="product-quantity">
+          {{#if (admin this.quantity 0)}}
+          <span>Hết hàng</span>
+          {{/if}}
+        </div>
+        <div class="product-desc">{{this.desc}}</div>
+        <div class="product-price">
+          <span class="product-retail-price" data-value="{{this.price}}"></span>
+          {{#if this.expensive}}
+          <span class="product-expensive-price" data-value="{{this.expensive}}"></span>
+          <div class="product-discount">-{{this.discount}}%</div>
+          <img class="img-sale" src="https://theme.hstatic.net/1000328919/1001004299/14/sale.png?v=4" alt="sale">
+          {{/if}}
+        </div>
+        <a href="/cart/add-cart/{{this._id}}" class="btn btn-success" role="button">Thêm vào giỏ hàng</a>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <a class="btn btn-success show-all" href="/products/cars?page=1">
+    Xem thêm
+    <i class="fas fa-angle-double-right"></i>
+  </a>
+  <div class="box-head mt-4">
+    <div class="line"></div>
+    <h1 class="page-title">MÔ HÌNH MÔ TÔ</h1>
+    <div class="line"></div>
+  </div>
+  <div class="main-content">
+    {{#each motos}}
+    <div class="product mt-4">
+      <a href="products/{{this.name}}">
+        <img src="/imgs/{{this.images.[0]}}" alt="{{this.name}}" class="product-img">
+      </a>
+      <div class="product-body">
+        <a href="products/{{this.name}}">
+          <div class="product-title">{{this.name}}</div>
+        </a>
+        <div class="product-desc">{{this.desc}}</div>
+        <div class="product-price">
+          <span class="product-retail-price" data-value="{{this.price}}"></span>
+          {{#if this.expensive}}
+          <span class="product-expensive-price" data-value="{{this.expensive}}"></span>
+          <div class="product-discount">-{{this.discount}}%</div>
+          <img class="img-sale" src="https://theme.hstatic.net/1000328919/1001004299/14/sale.png?v=4" alt="sale">
+          {{/if}}
+        </div>
+        <a href="/cart/add-cart/{{this._id}}" class="btn btn-success" role="button">Thêm vào giỏ hàng</a>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <a class="btn btn-success show-all" href="/products/motos?page=1">
+    Xem thêm
+    <i class="fas fa-angle-double-right"></i>
+  </a>
+</div>
+
+<div class="box-head">
+  <div class="line"></div>
+  <h1 class="page-title">LUÔN LÀM CÁC TÍN ĐỒ MÔ HÌNH HÀI LÒNG</h1>
+  <div class="line"></div>
+</div>
+<div class="service mt-4">
+  <div class="service-box">
+    <i class="box-icon fas fa-dollar-sign"></i>
+    <div class="title">GIAO HÀNG MIỄN PHÍ</div>
+    <div class="desc">Với đơn hàng từ 1.000.000đ trở lên</div>
+  </div>
+  <div class="service-box">
+    <i class="box-icon fas fa-shipping-fast"></i>
+    <div class="title">GIAO HÀNG TOÀN QUỐC</div>
+    <div class="desc">63 tỉnh thành</div>
+  </div>
+  <div class="service-box">
+    <i class="box-icon fas fa-hand-holding-usd"></i>
+    <div class="title">HOÀN LẠI TIỀN 100%</div>
+    <div class="desc">Cho tất cả sản phẩm bị gặp lỗi</div>
+  </div>
+  <div class="service-box">
+    <i class="box-icon fas fa-phone-volume"></i>
+    <div class="title">HOTLINE HỖ TRỢ</div>
+    <div class="desc">0976.064.640</div>
+  </div>
+</div>
+
+<div class="box-head">
+  <div class="line"></div>
+  <h1 class="page-title">CÁC THƯƠNG HIỆU NỔI TIẾNG</h1>
+  <div class="line"></div>
+</div>
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+  <!-- Carousel indicators -->
+  <!-- Wrapper for carousel items -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <div class="row">
+        <div class="img-box"><img src="/imgs/brand_items_1.png" class="img-fluid" alt=""></div>
+        <div class="img-box"><img src="/imgs/brand_items_2.png" class="img-fluid" alt=""></div>
+        <div class="img-box"><img src="/imgs/brand_items_3.png" class="img-fluid" alt=""></div>
+        <div class="img-box"><img src="/imgs/brand_items_4.png" class="img-fluid" alt=""></div>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <div class="row">
+        <div class="img-box"><img src="/imgs/brand_items_5.png" class="img-fluid" alt=""></div>
+        <div class="img-box"><img src="/imgs/brand_items_6.png" class="img-fluid" alt=""></div>
+        <div class="img-box"><img src="/imgs/brand_items_7.png" class="img-fluid" alt=""></div>
+        <div class="img-box"><img src="/imgs/brand_items_8.png" class="img-fluid" alt=""></div>
+      </div>
+    </div>
+  </div>
+  <!-- Carousel controls -->
+  <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+    <i class="fa fa-chevron-left"></i>
+  </a>
+  <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+    <i class="fa fa-chevron-right"></i>
+  </a>
+</div>
+<div class="famos-brand">
+
+</div>
+
+
+<script>
+  //Chuyển đổi thành đơn vị tiền tệ VN
+  const elements = document.querySelectorAll('span[data-value]');
+  const formatter = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND'
+  });
+
+  elements.forEach(element => {
+    const value = element.getAttribute('data-value');
+    element.textContent = formatter.format(value);
+  });
+</script>

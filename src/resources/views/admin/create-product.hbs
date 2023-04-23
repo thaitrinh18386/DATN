@@ -1,0 +1,87 @@
+<div class="mt-4 create-product">
+  <h2 class="page-title">Thêm mới sản phẩm</h2>
+  <a class="btn-nav" href="/admin/list-product" role="button">Danh sách sản phẩm</a>
+  <form method="POST" action="/admin/store" enctype="multipart/form-data">
+    <div class="form-group">
+      <label class="label-title" for="name">Tên sản phẩm</label>
+      <input type="text" class="form-control" id="name" name="name">
+    </div>
+    <div class="form-group">
+      <label class="label-title" for="desc">Mô tả</label>
+      <input type="text" class="form-control" id="desc" name="desc">
+    </div>
+    <div class="form-group">
+      <label class="label-title" for="cost">Giá nhập</label>
+      <input type="text" class="form-control" id="cost" name="cost">
+    </div>
+    <div class="form-group">
+      <label class="label-title" for="price">Giá sản phẩm</label>
+      <input type="text" class="form-control" id="price" name="price" onchange="updateDiscount()">
+    </div>
+    <div class="form-group">
+      <label class="label-title" for="expensive">Giá cao nhất</label>
+      <input type="text" class="form-control" id="expensive" name="expensive" onchange="updateDiscount()">
+    </div>
+    <div class="form-group">
+      <label class="label-title" for="discount">Phần trăm giảm giá</label>
+      <input type="text" class="form-control" id="discount" name="discount">
+    </div>
+    <div class="form-group">
+      <label class="label-title" for="category">Chọn thể loại sản phẩm</label>
+      <select name="category" id="category">
+        <option value="cars">cars</option>
+        <option value="motos">motos</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="label-title" for="size">Kích thước</label>
+      <input type="text" class="form-control" id="size" name="size">
+    </div>
+    <div class="form-group">
+      <label class="label-title" for="weight">Trọng lượng</label>
+      <input type="text" class="form-control" id="weight" name="weight">
+    </div>
+    <div class="form-group">
+      <label class="label-title" for="function">Mô tả chức năng</label>
+      <input type="text" class="form-control" id="function" name="function">
+    </div>
+    <div class="form-group">
+      <label class="label-title" for="ratio">Tỉ lệ</label>
+      <input type="text" class="form-control" id="ratio" name="ratio">
+    </div>
+    <div class="form-group">
+      <label class="label-title" for="material">Chất liệu</label>
+      <input type="text" class="form-control" id="material" name="material">
+    </div>
+    <div class="form-group">
+      <label class="label-title" for="images">Hình ảnh</label>
+      <input type="file" class="form-control-file" id="images" name="images" multiple>
+    </div>
+    <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+  function updateDiscount() {
+    var price = parseInt(document.getElementById("price").value)
+    var expensive = parseInt(document.getElementById("expensive").value)
+    var discount = ((expensive - price) / expensive) * 100
+    document.getElementById("discount").value = discount.toFixed(0)
+  }
+
+  //Upload file image
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $("#imgPreview").attr('src', e.target.result).width(100).height(100);
+      }
+      reader.readAsDataURL(input.files[0])
+    }
+  }
+  $("#image").change(function () {
+    readURL(this);
+  })
+</script>
